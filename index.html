@@ -1,0 +1,1252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOLive Room - The First AI-Powered Comedy Game Room</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header & Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #fff 0%, #fff9e6 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0px, 0px) rotate(0deg); }
+            33% { transform: translate(30px, -30px) rotate(120deg); }
+            66% { transform: translate(-20px, 20px) rotate(240deg); }
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #333, #FFD700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+        }
+
+        .hero-tagline {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #FFD700;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 40px;
+            line-height: 1.8;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            color: #333;
+            padding: 20px 40px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.4);
+        }
+
+        .hero-visual {
+            background: linear-gradient(135deg, #333, #555);
+            height: 400px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .video-placeholder {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .video-placeholder::before {
+            content: 'â–¶ï¸';
+            font-size: 4rem;
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        .video-placeholder h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .video-placeholder p {
+            font-size: 1rem;
+            opacity: 0.8;
+            color: #ccc;
+        }
+
+        /* Sections */
+        section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .section-alt {
+            background: linear-gradient(135deg, #f8f9fa 0%, #fff 100%);
+        }
+
+        h2 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            text-align: center;
+            color: #333;
+        }
+
+        h3 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        /* YouTube Carousel */
+        .youtube-section {
+            margin: 60px 0;
+        }
+
+        .youtube-carousel {
+            position: relative;
+            height: 300px;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            margin: 40px 0;
+        }
+
+        .carousel-track {
+            display: flex;
+            animation: scroll 15s linear infinite;
+            width: calc(280px * 10 + 20px * 9); /* 10 items with gaps */
+        }
+
+        .youtube-thumbnail {
+            min-width: 320px;
+            height: 340px;
+            margin-right: 20px;
+            background: #f0f0f0;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+            .thumbnail-image {
+        height: 130px;
+        background-size: contain;
+    }
+
+        .thumbnail-image {
+            height: 240px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            position: relative;
+            font-size: 1.1rem;
+            text-align: center;
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .thumbnail-image::after {
+            content: 'â–¶ï¸';
+            position: absolute;
+            font-size: 3rem;
+            opacity: 0.8;
+        }
+
+        .thumbnail-info {
+            padding: 15px;
+            background: white;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .thumbnail-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #333;
+            line-height: 1.3;
+        }
+
+        .thumbnail-views {
+            font-size: 0.8rem;
+            color: #666;
+            margin-top: 5px;
+            font-weight: 500;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* LOL Series showcase */
+        .lol-showcase {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            margin: 60px 0;
+        }
+
+        .lol-image {
+            height: 300px;
+            background: linear-gradient(135deg, #1a1a1a, #333);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            text-align: center;
+            padding: 20px;
+        }
+
+        .lol-stats {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .lol-stat {
+            margin-bottom: 25px;
+        }
+
+        .lol-stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #FFD700;
+            margin-bottom: 5px;
+        }
+
+        .lol-stat-text {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        /* Joko & Klaas Section */
+        .joko-klaas {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            margin: 60px 0;
+            text-align: center;
+        }
+
+        .top-videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .video-item {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .video-item:hover {
+            border-color: #FFD700;
+            transform: translateY(-3px);
+        }
+
+        .video-rank {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #FFD700;
+        }
+
+        .video-views {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        /* Transition Arrow */
+        .transition-section {
+            text-align: center;
+            padding: 60px 0;
+            background: linear-gradient(135deg, #fff9e6, #fff);
+        }
+
+        .transition-arrow {
+            font-size: 4rem;
+            color: #FFD700;
+            margin: 20px 0;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .transition-text {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Concept Section */
+        .concept-highlight {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #333;
+            padding: 60px 40px;
+            border-radius: 25px;
+            margin: 60px 0;
+            box-shadow: 0 20px 60px rgba(255, 215, 0, 0.3);
+        }
+
+        .concept-intro {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .concept-intro h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .concept-intro p {
+            font-size: 1.3rem;
+            line-height: 1.6;
+        }
+
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .concept-feature {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .concept-feature h4 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        /* Technical Gallery */
+        .tech-gallery {
+            display: flex;
+            flex-direction: column;
+            gap: 80px;
+            margin: 60px 0;
+        }
+
+        .tech-item {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .tech-item:nth-child(even) .tech-visual {
+            order: 2;
+        }
+
+        .tech-item:nth-child(even) .tech-content {
+            order: 1;
+        }
+
+        .tech-visual {
+            height: 350px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+
+        .tech-placeholder {
+            background: linear-gradient(135deg, #333, #555);
+            color: white;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-align: center;
+            position: relative;
+        }
+
+        .tech-placeholder::before {
+            content: 'ðŸ”§';
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2rem;
+            opacity: 0.6;
+        }
+
+        .tech-content h3 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        .tech-content p {
+            font-size: 1.1rem;
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        .tech-content ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .tech-content li {
+            padding: 8px 0;
+            color: #666;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .tech-content li::before {
+            content: 'âœ“';
+            position: absolute;
+            left: 0;
+            color: #FFD700;
+            font-weight: bold;
+        }
+
+        /* Target Groups */
+        .target-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+        }
+
+        .target-card {
+            background: linear-gradient(135deg, #fff 0%, #fff9e6 100%);
+            padding: 30px;
+            border-radius: 15px;
+            border-left: 6px solid #FFD700;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+        }
+
+        .target-card h4 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        /* Technology Section */
+        .tech-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+        }
+
+        .tech-point {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border-top: 3px solid #FFD700;
+        }
+
+        .tech-point h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        /* Investment Section */
+        .investment-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin: 60px 0;
+        }
+
+        .investment-card {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #333;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .investment-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .investment-card h4 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(135deg, #333 0%, #2c2c2c 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .contact h2 {
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .contact-description {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            color: #ccc;
+        }
+
+        .contact-info {
+            margin-top: 40px;
+        }
+
+        .contact-info a {
+            color: #FFD700;
+            text-decoration: none;
+            font-size: 1.1rem;
+            margin: 0 20px;
+            transition: color 0.3s ease;
+        }
+
+        .contact-info a:hover {
+            color: #FFA500;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-tagline {
+                font-size: 1.2rem;
+            }
+
+            .hero-description {
+                font-size: 1.1rem;
+            }
+
+            h2 {
+                font-size: 2.2rem;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+
+            .cta-button {
+                padding: 15px 30px;
+                font-size: 1rem;
+            }
+
+            .youtube-carousel {
+                height: 200px;
+            }
+
+            .youtube-thumbnail {
+                min-width: 280px;
+                height: 200px;
+            }
+
+            .lol-showcase {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .concept-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tech-item {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .tech-item:nth-child(even) .tech-visual {
+                order: 1;
+            }
+
+            .tech-item:nth-child(even) .tech-content {
+                order: 2;
+            }
+
+            .top-videos-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .transition-text {
+                font-size: 1.4rem;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Loading animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* User-Generated Content Styles */
+.user-content {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+    margin: 60px 0;
+    text-align: center;
+}
+
+.phone-recordings {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin: 30px 0;
+}
+
+.phone-video {
+    background: #f8f9fa;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.phone-video video {
+    aspect-ratio: 9/16;
+    height: 400px;
+}
+
+.video-caption {
+    padding: 15px;
+    text-align: center;
+}
+
+.comments-showcase {
+    margin-top: 40px;
+}
+
+.comment-bubbles {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.comment {
+    background: linear-gradient(135deg, #f8f9fa, #fff);
+    padding: 15px 20px;
+    border-radius: 25px;
+    border-left: 3px solid #FFD700;
+    font-style: italic;
+    color: #666;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+@media (max-width: 768px) {
+    .phone-recordings {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .comment-bubbles {
+        grid-template-columns: 1fr;
+    }
+}
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>LOLive Room</h1>
+                    <div class="hero-tagline">The first AI-powered comedy game room! Don't laugh, or you lose!</div>
+                    <p class="hero-description">We turn the hit format <em>Last One Laughing</em> into a real-life, fully automated group event powered by AI emotion recognition.</p>
+                    <a href="#contact" class="cta-button">Let's talk at IAAPA</a>
+                </div>
+                <div class="hero-visual">
+                <video autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover; border-radius: 20px;">
+                    <source src="assets/hero-demo.mp4" type="video/mp4">
+                        <div class="video-placeholder">
+                            <h3>AI Emotion Detection Demo</h3>
+                            <p>Live demonstration of our laughter detection technology</p>
+                        </div>
+                    </video>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Market Section -->
+    <section class="section-alt">
+        <div class="container">
+            <h2 class="fade-in">From viral videos to streaming hits - comedy rules online</h2>
+            
+            <!-- YouTube "Try Not To Laugh" Carousel -->
+            <div class="youtube-section fade-in">
+                <h3 style="text-align: center; margin-bottom: 30px;">Try Not To Laugh videos dominate YouTube</h3>
+                <div class="youtube-carousel">
+                    <div class="carousel-track">
+                        <div class="youtube-thumbnail">
+                            <div class="thumbnail-image" style="background-image: url('assets/thumb_01.jpg');">
+                                <div class="thumbnail-overlay">TRY NOT TO LAUGH</div>
+                            </div>
+                            <div class="thumbnail-info">
+                                <div class="thumbnail-title">Try Not To Laugh Challenge #1</div>
+                                <div class="thumbnail-views">45M views</div>
+                            </div>
+                        </div>
+                        <div class="youtube-thumbnail">
+                            <div class="thumbnail-image" style="background-image: url('assets/thumb_02.jpg');">
+                                <div class="thumbnail-overlay">IMPOSSIBLE LAUGH</div>
+                            </div>
+                            <div class="thumbnail-info">
+                                <div class="thumbnail-title">Impossible Try Not To Laugh</div>
+                                <div class="thumbnail-views">67M views</div>
+                            </div>
+                        </div>
+                        <div class="youtube-thumbnail">
+                            <div class="thumbnail-image" style="background-image: url('assets/thumb_03.jpg');">
+                                <div class="thumbnail-overlay">FUNNY MOMENTS</div>
+                            </div>
+                            <div class="thumbnail-info">
+                                <div class="thumbnail-title">Funniest Moments Compilation</div>
+                                <div class="thumbnail-views">89M views</div>
+                            </div>
+                        </div>
+                        <div class="youtube-thumbnail">
+                            <div class="thumbnail-image" style="background-image: url('assets/thumb_04.jpg');">
+                                <div class="thumbnail-overlay">LAUGH CHALLENGE</div>
+                            </div>
+                            <div class="thumbnail-info">
+                                <div class="thumbnail-title">Ultimate Laugh Challenge</div>
+                                <div class="thumbnail-views">112M views</div>
+                            </div>
+                        </div>
+                        <div class="youtube-thumbnail">
+                            <div class="thumbnail-image" style="background-image: url('assets/thumb_05.jpg');">
+                                <div class="thumbnail-overlay">VIRAL FUNNY</div>
+                            </div>
+                            <div class="thumbnail-info">
+                                <div class="thumbnail-title">Viral Funny Videos 2024</div>
+                                <div class="thumbnail-views">78M views</div>
+                            </div>
+                        </div>
+                        <!-- Duplicate for seamless loop -->
+                        <div class="youtube-thumbnail">
+                            <div class="thumbnail-image" style="background-image: url('assets/thumb_01.jpg');">
+                                <div class="thumbnail-overlay">TRY NOT TO LAUGH</div>
+                            </div>
+                            <div class="thumbnail-info">
+                                <div class="thumbnail-title">Try Not To Laugh Challenge #1</div>
+                                <div class="thumbnail-views">45M views</div>
+                            </div>
+                        </div>
+                        <div class="youtube-thumbnail">
+                            <div class="thumbnail-image" style="background-image: url('assets/thumb_02.jpg');">
+                                <div class="thumbnail-overlay">IMPOSSIBLE LAUGH</div>
+                            </div>
+                            <div class="thumbnail-info">
+                                <div class="thumbnail-title">Impossible Try Not To Laugh</div>
+                                <div class="thumbnail-views">67M views</div>
+                            </div>
+                        </div>
+                        <div class="youtube-thumbnail">
+                            <div class="thumbnail-image" style="background-image: url('assets/thumb_03.jpg');">
+                                <div class="thumbnail-overlay">FUNNY MOMENTS</div>
+                            </div>
+                            <div class="thumbnail-info">
+                                <div class="thumbnail-title">Funniest Moments Compilation</div>
+                                <div class="thumbnail-views">89M views</div>
+                            </div>
+                        </div>
+                        <div class="youtube-thumbnail">
+                            <div class="thumbnail-image" style="background-image: url('assets/thumb_04.jpg');">
+                                <div class="thumbnail-overlay">LAUGH CHALLENGE</div>
+                            </div>
+                            <div class="thumbnail-info">
+                                <div class="thumbnail-title">Ultimate Laugh Challenge</div>
+                                <div class="thumbnail-views">112M views</div>
+                            </div>
+                        </div>
+                        <div class="youtube-thumbnail">
+                            <div class="thumbnail-image" style="background-image: url('assets/thumb_05.jpg');">
+                                <div class="thumbnail-overlay">VIRAL FUNNY</div>
+                            </div>
+                            <div class="thumbnail-info">
+                                <div class="thumbnail-title">Viral Funny Videos 2024</div>
+                                <div class="thumbnail-views">78M views</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LOL: Last One Laughing Series -->
+            <div class="lol-showcase fade-in">
+            <div class="lol-image">
+                <img src="assets/lol.png" alt="LOL: Last One Laughing" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+            </div>
+                <div class="lol-stats">
+                    <div class="lol-stat">
+                        <div class="lol-stat-number">#1</div>
+                        <div class="lol-stat-text">Most successful German streaming series on Amazon Prime 2021-2022</div>
+                    </div>
+                    <div class="lol-stat">
+                        <div class="lol-stat-number">10M+</div>
+                        <div class="lol-stat-text">Streams in Germany alone</div>
+                    </div>
+                    <div class="lol-stat">
+                        <div class="lol-stat-number">Global</div>
+                        <div class="lol-stat-text">Format exported to multiple countries worldwide</div>
+                    </div>
+                </div>
+            </div>
+
+        <!-- User-Generated Content Section -->
+        <div class="user-content fade-in">
+            <h3>People recreate the format themselves - and it goes viral</h3>
+            <p style="margin-bottom: 30px; color: #666;">Hundreds of comments show people wanting to try this themselves</p>
+            
+            <div class="phone-recordings">
+                <div class="phone-video">
+                    <video controls muted style="width: 100%; height: 100%; object-fit: contain; border-radius: 15px;">
+                        <source src="assets/lol2.mp4" type="video/mp4">
+                        <div class="video-placeholder" style="background: #333; color: white; display: flex; align-items: center; justify-content: center; height: 100%; border-radius: 15px;">
+                            Phone Recording 1
+                        </div>
+                    </video>
+                    <div class="video-caption">
+                        <strong>Amateur Recreation</strong><br>
+                        <span style="color: #666;">Friends trying the format at home</span>
+                    </div>
+                </div>
+
+                <div class="phone-video">
+                    <video controls muted style="width: 100%; height: 100%; object-fit: contain; border-radius: 15px;">
+                        <source src="assets/comments_lol.mp4" type="video/mp4">
+                        <div class="video-placeholder" style="background: #333; color: white; display: flex; align-items: center; justify-content: center; height: 100%; border-radius: 15px;">
+                            Phone Recording 2
+                        </div>
+                    </video>
+                    <div class="video-caption">
+                        <strong>Viral User Content</strong><br>
+                        <span style="color: #666;">Self-made "Try Not To Laugh" challenge</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="comments-showcase">
+                <h4 style="text-align: center; margin: 40px 0 20px 0; color: #333;">Comments from viewers:</h4>
+                <div class="comment-bubbles">
+                    <div class="comment">"We need to try this with our friend group!"</div>
+                    <div class="comment">"Where can I book this? Looks so fun!"</div>
+                    <div class="comment">"Finally something new for our next party"</div>
+                    <div class="comment">"This would be perfect for team building"</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Transition Section -->
+    <section class="transition-section">
+        <div class="container">
+            <div class="transition-text fade-in">
+                We want to bring this viral online concept into the event market
+            </div>
+            <div class="transition-arrow fade-in">â¬‡ï¸</div>
+        </div>
+    </section>
+
+    <!-- Our Concept Section -->
+    <section>
+        <div class="container">
+            <div class="concept-highlight fade-in">
+                <div class="concept-intro">
+                    <h2>LOLive Room: From Screen to Reality</h2>
+                    <p>We created a 60-minute group event for 3-10 players where participants make each other laugh while our AI watches every smile.</p>
+                </div>
+                
+                <div class="concept-grid">
+                    <div class="concept-feature">
+                        <h4>ðŸ¤– AI Emotion Detection</h4>
+                        <p>Our proprietary AI detects smiles and laughter in real-time, automatically tracking each player</p>
+                    </div>
+                    <div class="concept-feature">
+                        <h4>ðŸŽ¥ Multi-Camera System</h4>
+                        <p>Professional cameras film everything from multiple angles for the perfect coverage</p>
+                    </div>
+                    <div class="concept-feature">
+                        <h4>ðŸŽ® Interactive Mini-Games</h4>
+                        <p>Custom-developed games designed to make players laugh while following automated patterns</p>
+                    </div>
+                    <div class="concept-feature">
+                        <h4>ðŸ“± Smart Dashboard</h4>
+                        <p>Game masters can manage up to 4 rooms simultaneously with live feedback on action, laughter, and noise levels</p>
+                    </div>
+                    <div class="concept-feature">
+                        <h4>ðŸŽ¬ Auto-Generated Videos</h4>
+                        <p>Players receive their own "Try Not To Laugh" video, automatically edited by our AI</p>
+                    </div>
+                    <div class="concept-feature">
+                        <h4>âš¡ Fully Automated</h4>
+                        <p>Each game follows structured patterns that run automatically - minimal human intervention needed</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How it Works - Technical -->
+    <section class="section-alt">
+        <div class="container">
+            <h2 class="fade-in">How our technology works</h2>
+            
+            <div class="tech-gallery">
+                <div class="tech-item fade-in">
+                    <div class="tech-visual">
+                        <div class="tech-placeholder">
+                            AI Emotion Detection Model Demo<br>
+                            <small style="font-size: 0.9rem; opacity: 0.8;">Custom YOLO-based laughter recognition</small>
+                        </div>
+                    </div>
+                    <div class="tech-content">
+                        <h3>Custom YOLO-based Emotion Detection</h3>
+                        <p>Our proprietary machine learning model, trained on 580+ annotated images, detects facial expressions and laughter in real-time with 94% accuracy. The system can differentiate between genuine laughter, smiles, and neutral expressions.</p>
+                        <ul>
+                            <li>Real-time processing at 30 FPS</li>
+                            <li>Multi-face tracking up to 10 players</li>
+                            <li>Custom training dataset for laughter detection</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="tech-item fade-in">
+                    <div class="tech-content">
+                        <h3>Multi-Camera Tracking System</h3>
+                        <p>ArUco marker-based calibration system ensures precise player identification and tracking across multiple camera angles. Each player is automatically assigned and tracked throughout the entire session.</p>
+                        <ul>
+                            <li>12 synchronized cameras</li>
+                            <li>Automatic player identification</li>
+                            <li>360Â° room coverage</li>
+                        </ul>
+                    </div>
+                    <div class="tech-visual">
+                        <div class="tech-placeholder">
+                            Multi-Camera Setup & Tracking Demo<br>
+                            <small style="font-size: 0.9rem; opacity: 0.8;">ArUco calibration system</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tech-item fade-in">
+                    <div class="tech-visual">
+                        <div class="tech-placeholder">
+                            Game Master Dashboard Interface<br>
+                            <small style="font-size: 0.9rem; opacity: 0.8;">Real-time room management</small>
+                        </div>
+                    </div>
+                    <div class="tech-content">
+                        <h3>Intelligent Dashboard System</h3>
+                        <p>Our central control system provides real-time analytics for multiple rooms simultaneously. Game masters receive instant feedback on room activity, player engagement, and session progress.</p>
+                        <ul>
+                            <li>Live laughter intensity metrics</li>
+                            <li>Noise level monitoring</li>
+                            <li>Automated game flow control</li>
+                            <li>Multi-room management</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="tech-item fade-in">
+                    <div class="tech-content">
+                        <h3>AI-Powered Video Editing</h3>
+                        <p>Automated highlight detection and video compilation creates personalized "Try Not To Laugh" videos for each group. Our algorithm identifies the funniest moments and creates a professional edit within minutes.</p>
+                        <ul>
+                            <li>Automatic highlight detection</li>
+                            <li>Multi-angle editing</li>
+                            <li>Instant video generation</li>
+                            <li>Personalized thumbnails</li>
+                        </ul>
+                    </div>
+                    <div class="tech-visual">
+                        <div class="tech-placeholder">
+                            Auto-Editing Process Visualization<br>
+                            <small style="font-size: 0.9rem; opacity: 0.8;">AI highlight detection</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tech-item fade-in">
+                    <div class="tech-visual">
+                        <div class="tech-placeholder">
+                            Mini-Games Collection Preview<br>
+                            <small style="font-size: 0.9rem; opacity: 0.8;">50+ interactive games</small>
+                        </div>
+                    </div>
+                    <div class="tech-content">
+                        <h3>Interactive Mini-Game Library</h3>
+                        <p>Over 50 custom-developed mini-games designed specifically to trigger laughter while maintaining fair gameplay. Each game follows structured patterns that run automatically without human intervention.</p>
+                        <ul>
+                            <li>50+ unique mini-games</li>
+                            <li>Difficulty progression system</li>
+                            <li>Automatic game selection</li>
+                            <li>Customizable game duration</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Target Groups -->
+    <section>
+        <div class="container">
+            <h2 class="fade-in">Target Groups & Use Cases</h2>
+            <div class="target-grid">
+                <div class="target-card fade-in">
+                    <h4>Private Customers</h4>
+                    <p>Friend groups, bachelor parties, families looking for unique entertainment experiences</p>
+                </div>
+                <div class="target-card fade-in">
+                    <h4>Corporate Clients</h4>
+                    <p>Team building events, company offsites, Christmas parties, and corporate entertainment</p>
+                </div>
+                <div class="target-card fade-in">
+                    <h4>Event Providers</h4>
+                    <p>Escape Rooms, leisure centers seeking franchise opportunities and licensing models</p>
+                </div>
+                <div class="target-card fade-in">
+                    <h4>Mobile Version</h4>
+                    <p>Pop-up rooms for festivals, trade shows, and corporate events worldwide</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology -->
+    <section class="section-alt">
+        <div class="container">
+            <h2 class="fade-in">Deep tech meets entertainment</h2>
+            <div class="tech-points">
+                <div class="tech-point fade-in">
+                    <h4>Custom YOLO Model</h4>
+                    <p>Proprietary laugh recognition trained on 580+ images for precise emotion detection</p>
+                </div>
+                <div class="tech-point fade-in">
+                    <h4>Multi-Camera Tracking</h4>
+                    <p>ArUco calibration system for accurate player identification and tracking</p>
+                </div>
+                <div class="tech-point fade-in">
+                    <h4>Auto-Editing Software</h4>
+                    <p>Intelligent video editing creates personalized highlight reels automatically</p>
+                </div>
+                <div class="tech-point fade-in">
+                    <h4>Multi-Room Dashboard</h4>
+                    <p>Comprehensive management system for operating multiple rooms efficiently</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Investment -->
+    <section>
+        <div class="container">
+            <h2 class="fade-in">Why invest & partner with us</h2>
+            <div class="investment-points">
+                <div class="investment-card fade-in">
+                    <h4>ðŸŽ¯ New Market Segment</h4>
+                    <p>Humor + Technology creates a completely untapped entertainment category</p>
+                </div>
+                <div class="investment-card fade-in">
+                    <h4>ðŸ“ˆ High Scalability</h4>
+                    <p>Franchise model and mobile versions enable rapid global expansion</p>
+                </div>
+                <div class="investment-card fade-in">
+                    <h4>ðŸ”’ Strong IP Protection</h4>
+                    <p>Proprietary software and algorithms provide competitive advantages</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="fade-in">Let's laugh together</h2>
+            <p class="contact-description fade-in">We are looking for partners, investors and event providers to bring the LOLive Room worldwide.</p>
+            <a href="mailto:hello@loliveroom.com" class="cta-button fade-in">Meet us at IAAPA Barcelona</a>
+            <div class="contact-info fade-in">
+                <a href="mailto:hello@loliveroom.com">hello@loliveroom.com</a>
+                <a href="https://linkedin.com/company/loliveroom" target="_blank">LinkedIn</a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // CTA button click tracking (placeholder)
+        document.querySelectorAll('.cta-button').forEach(button => {
+            button.addEventListener('click', function() {
+                // Analytics tracking would go here
+                console.log('CTA clicked:', this.textContent);
+            });
+        });
+
+        // Add some interactive hover effects
+        document.querySelectorAll('.target-card, .tech-point, .investment-card, .video-item').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
