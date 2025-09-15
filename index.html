@@ -125,7 +125,7 @@
         }
 
         .video-placeholder::before {
-            content: 'â–¶ï¸';
+            content: '▶️';
             font-size: 4rem;
             display: block;
             margin-bottom: 20px;
@@ -199,10 +199,6 @@
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
-            .thumbnail-image {
-        height: 130px;
-        background-size: contain;
-    }
 
         .thumbnail-image {
             height: 240px;
@@ -220,7 +216,7 @@
         }
 
         .thumbnail-image::after {
-            content: 'â–¶ï¸';
+            content: '▶️';
             position: absolute;
             font-size: 3rem;
             opacity: 0.8;
@@ -301,8 +297,8 @@
             font-size: 1.1rem;
         }
 
-        /* Joko & Klaas Section */
-        .joko-klaas {
+        /* User-Generated Content Styles */
+        .user-content {
             background: white;
             padding: 40px;
             border-radius: 20px;
@@ -311,37 +307,49 @@
             text-align: center;
         }
 
-        .top-videos-grid {
+        .phone-recordings {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 20px;
-            margin-top: 30px;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin: 30px 0;
         }
 
-        .video-item {
+        .phone-video {
             background: #f8f9fa;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .phone-video video {
+            aspect-ratio: 9/16;
+            height: 400px;
+        }
+
+        .video-caption {
             padding: 15px;
-            border-radius: 10px;
             text-align: center;
-            border: 2px solid transparent;
-            transition: all 0.3s ease;
         }
 
-        .video-item:hover {
-            border-color: #FFD700;
-            transform: translateY(-3px);
+        .comments-showcase {
+            margin-top: 40px;
         }
 
-        .video-rank {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #FFD700;
+        .comment-bubbles {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
         }
 
-        .video-views {
-            font-size: 0.9rem;
+        .comment {
+            background: linear-gradient(135deg, #f8f9fa, #fff);
+            padding: 15px 20px;
+            border-radius: 25px;
+            border-left: 3px solid #FFD700;
+            font-style: italic;
             color: #666;
-            margin-top: 5px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
 
         /* Transition Arrow */
@@ -419,92 +427,6 @@
             color: #333;
         }
 
-        /* Technical Gallery */
-        .tech-gallery {
-            display: flex;
-            flex-direction: column;
-            gap: 80px;
-            margin: 60px 0;
-        }
-
-        .tech-item {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .tech-item:nth-child(even) .tech-visual {
-            order: 2;
-        }
-
-        .tech-item:nth-child(even) .tech-content {
-            order: 1;
-        }
-
-        .tech-visual {
-            height: 350px;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
-        }
-
-        .tech-placeholder {
-            background: linear-gradient(135deg, #333, #555);
-            color: white;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            font-weight: 600;
-            text-align: center;
-            position: relative;
-        }
-
-        .tech-placeholder::before {
-            content: 'ðŸ”§';
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            font-size: 2rem;
-            opacity: 0.6;
-        }
-
-        .tech-content h3 {
-            color: #333;
-            margin-bottom: 20px;
-            font-size: 1.8rem;
-        }
-
-        .tech-content p {
-            font-size: 1.1rem;
-            color: #666;
-            line-height: 1.7;
-            margin-bottom: 25px;
-        }
-
-        .tech-content ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .tech-content li {
-            padding: 8px 0;
-            color: #666;
-            position: relative;
-            padding-left: 25px;
-        }
-
-        .tech-content li::before {
-            content: 'âœ“';
-            position: absolute;
-            left: 0;
-            color: #FFD700;
-            font-weight: bold;
-        }
-
         /* Target Groups */
         .target-grid {
             display: grid;
@@ -528,57 +450,6 @@
             color: #333;
         }
 
-        /* Technology Section */
-        .tech-points {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin: 60px 0;
-        }
-
-        .tech-point {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            border-top: 3px solid #FFD700;
-        }
-
-        .tech-point h4 {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 15px;
-            color: #333;
-        }
-
-        /* Investment Section */
-        .investment-points {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            margin: 60px 0;
-        }
-
-        .investment-card {
-            background: linear-gradient(135deg, #FFD700, #FFA500);
-            color: #333;
-            padding: 40px;
-            border-radius: 20px;
-            text-align: center;
-            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.3);
-            transition: transform 0.3s ease;
-        }
-
-        .investment-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .investment-card h4 {
-            font-size: 1.4rem;
-            font-weight: 600;
-            margin-bottom: 15px;
-        }
-
         /* Contact Section */
         .contact {
             background: linear-gradient(135deg, #333 0%, #2c2c2c 100%);
@@ -599,6 +470,13 @@
 
         .contact-info {
             margin-top: 40px;
+        }
+
+        .contact-info p {
+            color: #FFD700;
+            font-size: 1.1rem;
+            margin: 10px 0;
+            font-weight: 600;
         }
 
         .contact-info a {
@@ -655,6 +533,11 @@
                 height: 200px;
             }
 
+            .thumbnail-image {
+                height: 130px;
+                background-size: contain;
+            }
+
             .lol-showcase {
                 grid-template-columns: 1fr;
                 gap: 40px;
@@ -664,21 +547,13 @@
                 grid-template-columns: 1fr;
             }
 
-            .tech-item {
+            .phone-recordings {
                 grid-template-columns: 1fr;
                 gap: 30px;
             }
-
-            .tech-item:nth-child(even) .tech-visual {
-                order: 1;
-            }
-
-            .tech-item:nth-child(even) .tech-content {
-                order: 2;
-            }
-
-            .top-videos-grid {
-                grid-template-columns: repeat(2, 1fr);
+            
+            .comment-bubbles {
+                grid-template-columns: 1fr;
             }
 
             .transition-text {
@@ -702,72 +577,6 @@
             opacity: 1;
             transform: translateY(0);
         }
-
-        /* User-Generated Content Styles */
-.user-content {
-    background: white;
-    padding: 40px;
-    border-radius: 20px;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
-    margin: 60px 0;
-    text-align: center;
-}
-
-.phone-recordings {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-    margin: 30px 0;
-}
-
-.phone-video {
-    background: #f8f9fa;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-}
-
-.phone-video video {
-    aspect-ratio: 9/16;
-    height: 400px;
-}
-
-.video-caption {
-    padding: 15px;
-    text-align: center;
-}
-
-.comments-showcase {
-    margin-top: 40px;
-}
-
-.comment-bubbles {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 15px;
-    margin-top: 20px;
-}
-
-.comment {
-    background: linear-gradient(135deg, #f8f9fa, #fff);
-    padding: 15px 20px;
-    border-radius: 25px;
-    border-left: 3px solid #FFD700;
-    font-style: italic;
-    color: #666;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-}
-
-@media (max-width: 768px) {
-    .phone-recordings {
-        grid-template-columns: 1fr;
-        gap: 30px;
-    }
-    
-    .comment-bubbles {
-        grid-template-columns: 1fr;
-    }
-}
     </style>
 </head>
 <body>
@@ -779,7 +588,7 @@
                     <h1>LOLive Room</h1>
                     <div class="hero-tagline">The first AI-powered comedy game room! Don't laugh, or you lose!</div>
                     <p class="hero-description">We turn the hit format <em>Last One Laughing</em> into a real-life, fully automated group event powered by AI emotion recognition.</p>
-                    <a href="#contact" class="cta-button">Let's talk at IAAPA</a>
+                    <a href="#contact" class="cta-button">Let's connect at IAAPA</a>
                 </div>
                 <div class="hero-visual">
                 <video autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover; border-radius: 20px;">
@@ -957,11 +766,12 @@
                 <h4 style="text-align: center; margin: 40px 0 20px 0; color: #333;">Comments from viewers:</h4>
                 <div class="comment-bubbles">
                     <div class="comment">"We need to try this with our friend group!"</div>
-                    <div class="comment">"Where can I book this? Looks so fun!"</div>
+                    <div class="comment">"We need to play it ourselves!"</div>
                     <div class="comment">"Finally something new for our next party"</div>
-                    <div class="comment">"This would be perfect for team building"</div>
+                    <div class="comment">"Lets try it out!"</div>
                 </div>
             </div>
+        </div>
         </div>
     </section>
 
@@ -971,7 +781,7 @@
             <div class="transition-text fade-in">
                 We want to bring this viral online concept into the event market
             </div>
-            <div class="transition-arrow fade-in">â¬‡ï¸</div>
+            <div class="transition-arrow fade-in">⬇️</div>
         </div>
     </section>
 
@@ -986,130 +796,28 @@
                 
                 <div class="concept-grid">
                     <div class="concept-feature">
-                        <h4>ðŸ¤– AI Emotion Detection</h4>
+                        <h4>🤖 AI Emotion Detection</h4>
                         <p>Our proprietary AI detects smiles and laughter in real-time, automatically tracking each player</p>
                     </div>
                     <div class="concept-feature">
-                        <h4>ðŸŽ¥ Multi-Camera System</h4>
+                        <h4>🎥 Multi-Camera System</h4>
                         <p>Professional cameras film everything from multiple angles for the perfect coverage</p>
                     </div>
                     <div class="concept-feature">
-                        <h4>ðŸŽ® Interactive Mini-Games</h4>
+                        <h4>🎮 Interactive Mini-Games</h4>
                         <p>Custom-developed games designed to make players laugh while following automated patterns</p>
                     </div>
                     <div class="concept-feature">
-                        <h4>ðŸ“± Smart Dashboard</h4>
+                        <h4>📱 Smart Dashboard</h4>
                         <p>Game masters can manage up to 4 rooms simultaneously with live feedback on action, laughter, and noise levels</p>
                     </div>
                     <div class="concept-feature">
-                        <h4>ðŸŽ¬ Auto-Generated Videos</h4>
+                        <h4>🎬 Auto-Generated Videos</h4>
                         <p>Players receive their own "Try Not To Laugh" video, automatically edited by our AI</p>
                     </div>
                     <div class="concept-feature">
-                        <h4>âš¡ Fully Automated</h4>
+                        <h4>⚡ Fully Automated</h4>
                         <p>Each game follows structured patterns that run automatically - minimal human intervention needed</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- How it Works - Technical -->
-    <section class="section-alt">
-        <div class="container">
-            <h2 class="fade-in">How our technology works</h2>
-            
-            <div class="tech-gallery">
-                <div class="tech-item fade-in">
-                    <div class="tech-visual">
-                        <div class="tech-placeholder">
-                            AI Emotion Detection Model Demo<br>
-                            <small style="font-size: 0.9rem; opacity: 0.8;">Custom YOLO-based laughter recognition</small>
-                        </div>
-                    </div>
-                    <div class="tech-content">
-                        <h3>Custom YOLO-based Emotion Detection</h3>
-                        <p>Our proprietary machine learning model, trained on 580+ annotated images, detects facial expressions and laughter in real-time with 94% accuracy. The system can differentiate between genuine laughter, smiles, and neutral expressions.</p>
-                        <ul>
-                            <li>Real-time processing at 30 FPS</li>
-                            <li>Multi-face tracking up to 10 players</li>
-                            <li>Custom training dataset for laughter detection</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="tech-item fade-in">
-                    <div class="tech-content">
-                        <h3>Multi-Camera Tracking System</h3>
-                        <p>ArUco marker-based calibration system ensures precise player identification and tracking across multiple camera angles. Each player is automatically assigned and tracked throughout the entire session.</p>
-                        <ul>
-                            <li>12 synchronized cameras</li>
-                            <li>Automatic player identification</li>
-                            <li>360Â° room coverage</li>
-                        </ul>
-                    </div>
-                    <div class="tech-visual">
-                        <div class="tech-placeholder">
-                            Multi-Camera Setup & Tracking Demo<br>
-                            <small style="font-size: 0.9rem; opacity: 0.8;">ArUco calibration system</small>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="tech-item fade-in">
-                    <div class="tech-visual">
-                        <div class="tech-placeholder">
-                            Game Master Dashboard Interface<br>
-                            <small style="font-size: 0.9rem; opacity: 0.8;">Real-time room management</small>
-                        </div>
-                    </div>
-                    <div class="tech-content">
-                        <h3>Intelligent Dashboard System</h3>
-                        <p>Our central control system provides real-time analytics for multiple rooms simultaneously. Game masters receive instant feedback on room activity, player engagement, and session progress.</p>
-                        <ul>
-                            <li>Live laughter intensity metrics</li>
-                            <li>Noise level monitoring</li>
-                            <li>Automated game flow control</li>
-                            <li>Multi-room management</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="tech-item fade-in">
-                    <div class="tech-content">
-                        <h3>AI-Powered Video Editing</h3>
-                        <p>Automated highlight detection and video compilation creates personalized "Try Not To Laugh" videos for each group. Our algorithm identifies the funniest moments and creates a professional edit within minutes.</p>
-                        <ul>
-                            <li>Automatic highlight detection</li>
-                            <li>Multi-angle editing</li>
-                            <li>Instant video generation</li>
-                            <li>Personalized thumbnails</li>
-                        </ul>
-                    </div>
-                    <div class="tech-visual">
-                        <div class="tech-placeholder">
-                            Auto-Editing Process Visualization<br>
-                            <small style="font-size: 0.9rem; opacity: 0.8;">AI highlight detection</small>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="tech-item fade-in">
-                    <div class="tech-visual">
-                        <div class="tech-placeholder">
-                            Mini-Games Collection Preview<br>
-                            <small style="font-size: 0.9rem; opacity: 0.8;">50+ interactive games</small>
-                        </div>
-                    </div>
-                    <div class="tech-content">
-                        <h3>Interactive Mini-Game Library</h3>
-                        <p>Over 50 custom-developed mini-games designed specifically to trigger laughter while maintaining fair gameplay. Each game follows structured patterns that run automatically without human intervention.</p>
-                        <ul>
-                            <li>50+ unique mini-games</li>
-                            <li>Difficulty progression system</li>
-                            <li>Automatic game selection</li>
-                            <li>Customizable game duration</li>
-                        </ul>
                     </div>
                 </div>
             </div>
@@ -1141,61 +849,14 @@
         </div>
     </section>
 
-    <!-- Technology -->
-    <section class="section-alt">
-        <div class="container">
-            <h2 class="fade-in">Deep tech meets entertainment</h2>
-            <div class="tech-points">
-                <div class="tech-point fade-in">
-                    <h4>Custom YOLO Model</h4>
-                    <p>Proprietary laugh recognition trained on 580+ images for precise emotion detection</p>
-                </div>
-                <div class="tech-point fade-in">
-                    <h4>Multi-Camera Tracking</h4>
-                    <p>ArUco calibration system for accurate player identification and tracking</p>
-                </div>
-                <div class="tech-point fade-in">
-                    <h4>Auto-Editing Software</h4>
-                    <p>Intelligent video editing creates personalized highlight reels automatically</p>
-                </div>
-                <div class="tech-point fade-in">
-                    <h4>Multi-Room Dashboard</h4>
-                    <p>Comprehensive management system for operating multiple rooms efficiently</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Investment -->
-    <section>
-        <div class="container">
-            <h2 class="fade-in">Why invest & partner with us</h2>
-            <div class="investment-points">
-                <div class="investment-card fade-in">
-                    <h4>ðŸŽ¯ New Market Segment</h4>
-                    <p>Humor + Technology creates a completely untapped entertainment category</p>
-                </div>
-                <div class="investment-card fade-in">
-                    <h4>ðŸ“ˆ High Scalability</h4>
-                    <p>Franchise model and mobile versions enable rapid global expansion</p>
-                </div>
-                <div class="investment-card fade-in">
-                    <h4>ðŸ”’ Strong IP Protection</h4>
-                    <p>Proprietary software and algorithms provide competitive advantages</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Contact -->
     <section class="contact" id="contact">
         <div class="container">
-            <h2 class="fade-in">Let's laugh together</h2>
-            <p class="contact-description fade-in">We are looking for partners, investors and event providers to bring the LOLive Room worldwide.</p>
-            <a href="mailto:hello@loliveroom.com" class="cta-button fade-in">Meet us at IAAPA Barcelona</a>
+            <h2 class="fade-in">Let's connect at IAAPA</h2>
+            <p class="contact-description fade-in">Here are our contacts:</p>
             <div class="contact-info fade-in">
-                <a href="mailto:hello@loliveroom.com">hello@loliveroom.com</a>
-                <a href="https://linkedin.com/company/loliveroom" target="_blank">LinkedIn</a>
+                <p>+49 15253457314</p>
+                <a href="mailto:Lm.Leonardmarx@gmail.com">Lm.Leonardmarx@gmail.com</a>
             </div>
         </div>
     </section>
@@ -1238,7 +899,7 @@
         });
 
         // Add some interactive hover effects
-        document.querySelectorAll('.target-card, .tech-point, .investment-card, .video-item').forEach(card => {
+        document.querySelectorAll('.target-card, .comment').forEach(card => {
             card.addEventListener('mouseenter', function() {
                 this.style.transform = 'translateY(-10px) scale(1.02)';
             });
